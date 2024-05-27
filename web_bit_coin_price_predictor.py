@@ -5,13 +5,21 @@ import matplotlib.pyplot as plt
 import yfinance as yf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.initializers import Orthogonal
+import tensorflow as tf
+from tensorflow.keras.models import load_model
 
-# Define custom objects
+model = load_model("Latest_bit_coin_model.keras")
+
+model.save("Latest_bit_coin_model_resaved.keras")
+
+import tensorflow as tf
+from tensorflow.keras.models import load_model
+model = load_model("Latest_bit_coin_model_resaved.keras")
+
 custom_objects = {
     'Orthogonal': Orthogonal
 }
 
-# Load the model with custom objects
 try:
     model = load_model("Latest_bit_coin_model.keras", custom_objects=custom_objects)
     st.write("Model loaded successfully")
