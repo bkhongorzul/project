@@ -1,34 +1,22 @@
-from keras.models import load_model
-from keras.optimizers import Adam 
-model = load_model("Latest_bit_coin_model.keras", compile=False)
-
-model.compile(optimizer=Adam(), loss='mean_squared_error', metrics=['accuracy'])
-
 import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import yfinance as yf
 from tensorflow.keras.models import load_model
+from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.initializers import Orthogonal
-import tensorflow as tf
-from tensorflow.keras.models import load_model
 
-model = load_model("Latest_bit_coin_model.keras")
-
-model.save("Latest_bit_coin_model_resaved.keras")
-
-import tensorflow as tf
-from tensorflow.keras.models import load_model
-model = load_model("Latest_bit_coin_model_resaved.keras")
-
+# Define custom objects if any
 custom_objects = {
     'Orthogonal': Orthogonal
 }
 
+# Load and compile the model
 try:
-    model = load_model("Latest_bit_coin_model.keras", custom_objects=custom_objects)
-    st.write("Model loaded successfully")
+    model = load_model("Latest_bit_coin_model.keras", custom_objects=custom_objects, compile=False)
+    model.compile(optimizer=Adam(), loss='mean_squared_error', metrics=['accuracy'])
+    st.write("Model loaded and compiled successfully")
 except Exception as e:
     st.write("Error loading model:", e)
 
