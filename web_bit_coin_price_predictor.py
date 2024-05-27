@@ -1,3 +1,9 @@
+from keras.models import load_model
+from keras.optimizers import Adam 
+model = load_model("Latest_bit_coin_model.keras", compile=False)
+
+model.compile(optimizer=Adam(), loss='mean_squared_error', metrics=['accuracy'])
+
 import streamlit as st
 import pandas as pd
 import numpy as np
